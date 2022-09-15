@@ -1,0 +1,60 @@
+package wekk2.day2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class DeleteLead {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		String driverPath=System.getProperty("webdriver.chrome.driver");
+		System.out.println(driverPath);
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("http://leaftaps.com/opentaps/control/login");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("DemoCSR");
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("crmsfa");
+		driver.findElement(By.xpath("//input[contains(@type,'submit')]")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'CRM/SFA')]")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Leads')]")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Find Leads')]")).click();
+		driver.findElement(By.xpath("//span[@class='x-tab-strip-inner']/span[text()=' ']")).click();
+		driver.findElement(By.xpath("//input[@id='ext-gen270']")).sendKeys("9008");
+		driver.findElement(By.xpath("//td[@class='x-btn-center']//button[text()='Find Leads']")).click();
+		WebElement firstLead=driver.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a"));
+		Thread.sleep(3000);
+		String dd=firstLead.getText();
+		System.out.println("First List Number is= "+ dd);
+		firstLead.click();
+		driver.findElement(By.xpath("//a[@class='subMenuButtonDangerous']")).click();
+		driver.findElement(By.xpath("//ul[@class='shortcuts']//a[text()='Find Leads']")).click();
+		driver.findElement(By.xpath("//div[@class='x-form-element']/input[@name='id'")).sendKeys(dd);
+		driver.findElement(By.xpath("//td[@class='x-btn-center']//button[text()='Find Leads']")).click();
+		WebElement verifyText=driver.findElement(By.xpath("//div[text()='No records to display']"));
+		String verify=verifyText.getText();
+		System.out.println("Verify Text ="+verify);
+		if(verify.equals("No records to display"))
+				{
+			
+			System.out.println("Deleted successfully");
+			
+				}
+		
+		else 
+		
+		{
+			System.out.println("Deletion failed");
+			
+				}
+		
+		
+	}
+
+}
