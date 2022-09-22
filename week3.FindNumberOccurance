@@ -1,0 +1,66 @@
+/*FindNumbersOccurances
+	 * Input array numbers, each occurrences
+	 * 
+	 * input: {2,3,5,6,3,2,1,4,2,1,6,-1};
+	 * output: 2 -> 3 , 3 -> 2, 4 -> 1 
+	 * 
+	 * Order: Ascending Order
+	 * 
+	 */
+	
+	/*
+	 * Psuedcode:
+	 * 
+	 * 1) Create Map -> TreeMap
+	 * 2) For loop -> each number -> add to the map
+	 * 3) If it is exist -> update it with + 1
+	 * 	  Else -> new entry with 1 as value
+	 * 
+	 */
+
+package week3.day2;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
+
+import org.apache.commons.collections4.bag.SynchronizedSortedBag;
+
+public class FindNumbersOccurance {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] a1= {2,3,5,6,3,2,1,4,2,1,6,-1};
+		//int maxOccurance=0;
+		//int key=0;
+		
+		Map<Integer,Integer> map=new TreeMap<Integer,Integer>();
+		for(int a:a1)
+		{
+			if(map.containsKey(a))
+		
+		{
+			map.put(a, map.getOrDefault(a,0)+1);
+		}
+		else
+		{
+			map.put(a, 1);
+		}
+	}
+		System.out.println(map);
+    
+    
+		/*Set<Entry<Integer,Integer>> entrySet=map.entrySet();
+		for(Entry<Integer,Integer> eachEntry:entrySet)
+		{
+			if(eachEntry.getValue()>maxOccurance)
+			{
+				key=eachEntry.getKey();
+				maxOccurance=eachEntry.getValue();
+				
+			}
+			
+			System.out.println(" maximum occurrence in the given array" + key + "--->" +maxOccurance);*/
+			}
+	}
+
