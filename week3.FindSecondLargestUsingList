@@ -1,0 +1,41 @@
+/*Define the array 
+ Declare the array into list
+ sort the list using collections.sort
+Pick the 2nd element from the last and print it*/
+
+package week3.day2;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class FindSecondLargestUsingCollectionsList {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] a= {3,2,11,4,6,7};
+		
+		//Declare the array into list
+		
+		List<Integer> list= new ArrayList<Integer>();
+		for(int dd :a)
+		{
+			list.add(dd);
+		}
+		
+		//sort the list using collections.sort
+		
+		Collections.sort(list);
+		
+		System.out.println("The sorted given list:"+list);
+		
+		//Pick the 2nd element from the last and print it
+		Integer secondLargest = list.get(list.size()-2);
+	
+		System.out.println("The second element from the last is = " +secondLargest);
+		
+
+	}
+
+}
